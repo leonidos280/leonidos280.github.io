@@ -131,6 +131,7 @@ const images = [
     'stickers/8.png',
     'stickers/1.png',
     'stickers/2.png',
+    
 ];
 
 document.getElementById('spawnBtn').addEventListener('click', function() {

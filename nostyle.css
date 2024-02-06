@@ -1,0 +1,22 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Use the full viewport height */
+    margin: 0; /* Remove default margin */
+    background-color: #1c1c1c; /* Example of a darker background color */
+    /* For a background image, uncomment the next line and replace 'path/to/your/image.jpg' */
+    /* background-image: url('path/to/your/image.jpg'); */
+    background-size: cover; /* Ensure the background image covers the entire page */
+    background-position: center; /* Center the background image */
+}
+
+.video-container {
+    text-align: center; /* Center the video within the container */
+}
+
+video {
+    max-width: 100%; /* Ensure the video is responsive */
+    height: auto; /* Maintain aspect ratio */
+    /* Add more styling as needed */
+}

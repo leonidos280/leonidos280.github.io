@@ -1,6 +1,7 @@
 const noBtn = document.getElementById('noBtn');
 const yesBtn = document.getElementById('yesBtn');
 const body = document.querySelector('body');
+let hoverCounter = 0; // Initialize hover counter
 
 let yesBtnFontSize = 16; // Initial font size for 'Yes' button
 let yesBtnPadding = 10; // Initial padding for 'Yes' button
@@ -13,9 +14,10 @@ const funnyMessages = [
     "Really, really sure?",
     "Rim seem persistent!",
     "RIM!! think again...",
-    "Maybe click 'Yes'?",
+    "FINE! I give up!",
+    "Maybe not hehe",
     "This button is shy!",
-    "wa 3ibad",
+    "wa 3ibad lah!",
     "Are we dancing?",
     "You're persistent!",
     "Tickle, tickle, tickle!",
@@ -25,20 +27,25 @@ const funnyMessages = [
 ];
 
 noBtn.addEventListener('mouseover', function() {
-    // Move 'No' button
-    const bodyWidth = document.documentElement.clientWidth;
-    const bodyHeight = document.documentElement.clientHeight;
-    const btnWidth = this.offsetWidth;
-    const btnHeight = this.offsetHeight;
+    hoverCounter++; // Increment the hover counter
 
-    const randomX = Math.floor(Math.random() * (bodyWidth - btnWidth));
-    const randomY = Math.floor(Math.random() * (bodyHeight - btnHeight));
+    if (hoverCounter <= 20) {
+        // Move 'No' button logic here
 
-    this.style.position = 'absolute';
-    this.style.left = randomX + 'px';
-    this.style.top = randomY + 'px';
+        // Existing logic to move the button
+        const bodyWidth = document.documentElement.clientWidth;
+        const bodyHeight = document.documentElement.clientHeight;
+        const btnWidth = this.offsetWidth;
+        const btnHeight = this.offsetHeight;
 
-    // Increase 'Yes' button size
+        const randomX = Math.floor(Math.random() * (bodyWidth - btnWidth));
+        const randomY = Math.floor(Math.random() * (bodyHeight - btnHeight));
+
+        this.style.position = 'absolute';
+        this.style.left = randomX + 'px';
+        this.style.top = randomY + 'px';
+
+        // Increase 'Yes' button size
     yesBtnFontSize += 4; // Increase font size
     yesBtnPadding += 4; // Increase padding
     yesBtn.style.fontSize = yesBtnFontSize + 'px';
@@ -47,6 +54,13 @@ noBtn.addEventListener('mouseover', function() {
     const messageToShow = funnyMessages[messageIndex];
     this.textContent = messageToShow;
     messageIndex = (messageIndex + 1) % funnyMessages.length;
+    } else {
+        // Optionally, provide some visual feedback that the button will no longer move
+        this.style.cursor = 'pointer'; // Change cursor to pointer to indicate clickability
+        this.style.backgroundColor = "#90EE90"; // Light green background to indicate it's now clickable
+    }
+
+
 
 });
 
@@ -133,6 +147,16 @@ const images = [
     'stickers/2.png',
     
 ];
+
+
+
+noBtn.addEventListener('click', function() {
+    // Logic to move the button goes here (keep your existing code)
+
+    const destinationUrl = 'nopage.html';
+    window.location.href = destinationUrl;
+});
+
 
 document.getElementById('spawnBtn').addEventListener('click', function() {
     const randomIndex = Math.floor(Math.random() * images.length);

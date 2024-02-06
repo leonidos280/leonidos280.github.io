@@ -1,0 +1,27 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 50px;
+    background-color: #ffe0f0;
+    color: #d6336c;
+    position: relative;
+    overflow: hidden;
+}
+h1 {
+    margin-bottom: 40px;
+}
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.yes-button {
+    background-color: #c2f0c2;
+}
+.no-button {
+    background-color: #f0c2c2;
+}

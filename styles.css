@@ -6,6 +6,26 @@ body {
     color: #d6336c;
     position: relative;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url('seamless.jpeg'); /* Path to your seamless background image */
+    background-repeat: repeat; /* Repeat the background image */
+    background-size: auto; /* Keep the image at its original scale */
+    font-family: 'Pixelify Sans', sans-serif;
+}
+
+
+.content {
+    background-color: #fff; /* White background for the container */
+    border: 2px solid #ffe0e9; /* Pale pink border */
+    border-radius: 10px; /* Optional: adds rounded corners to the container */
+    padding: 20px; /* Spacing inside the container */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional: adds a subtle shadow for depth */
+    display: inline-block; /* Makes the container only as wide as its content */
+    margin: 20px; /* Adds some space around the container */
 }
 h1 {
     margin-bottom: 40px;
@@ -15,13 +35,90 @@ button {
     font-size: 16px;
     margin: 0 10px;
     border: none;
-    border-radius: 5px;
+    border-radius: 10%;
     cursor: pointer;
     transition: all 0.3s ease;
+    font-family: 'Pixelify Sans', sans-serif;
 }
 .yes-button {
     background-color: #c2f0c2;
 }
 .no-button {
+    
     background-color: #f0c2c2;
+}
+
+.question-gif {
+    display: block; /* Ensures the image is block-level to apply margin properties */
+    max-width: 100%; /* Makes sure the image is not wider than its container */
+    height: 150px; /* Keeps the image's aspect ratio */
+    margin: 0 auto 20px; /* Centers the image and adds space between the image and the question */
+    cursor : pointer;
+}
+
+.pop {
+    animation: pop 0.5s forwards;
+}
+
+@keyframes pop {
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    25% { transform: translateY(-20px); }
+    50% { transform: translateY(0); }
+    75% { transform: translateY(-10px); }
+}
+
+.bounce {
+    animation: bounce 0.6s;
+}
+
+.balloon {
+    width: 50px;
+    height: 70px;
+    background-color: pink;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    position: absolute;
+    bottom: -100px; /* Start below the screen */
+    opacity: 0.7;
+}
+
+@keyframes float {
+    to {
+        transform: translate(0, -110vh); /* Move balloons off the top of the screen */
+        opacity: 0;
+    }
+}
+
+
+.confetti {
+    position: absolute;
+    top: -60px; /* Start from the top of the page */
+    width: 10px;
+    height: 10px;
+    background-color: #ffcc00;
+    opacity: 1; /* Start fully visible */
+    border-radius: 50%;
+    animation: confetti 2s linear forwards; /* Use forwards to maintain final state */
+}
+
+@keyframes confetti {
+    0% { top: -10px; opacity: 1; }
+    90% { opacity: 1; } /* Keep fully visible for most of the animation */
+    100% { top: 100vh; opacity: 0; } /* End at the bottom of the page and fade out */
+}
+
+.message {
+    position: absolute;
+    bottom: 100px; /* Adjust as needed to position at the bottom */
+    font-size: 2rem;
+    color: #d6336c;
+}
+
+.draggable {
+    cursor: move; /* Indicates the element can be moved */
+    border: 1px dashed #ccc; /* Optional: Adds a dashed border around draggable images */
 }

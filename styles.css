@@ -17,6 +17,29 @@ body {
     font-family: 'Pixelify Sans', sans-serif;
 }
 
+@keyframes vibrate {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); }
+}
+
+.wrong-answer {
+    animation: vibrate 0.5s linear;
+    background-color: #ffb6c1; /* Pale red color */
+}
+
+
+.score {
+    font-size: 100px;
+}
+
+.next-button {
+    margin-top: 20px; /* Adjust the value as needed */
+}
+
 
 .content {
     background-color: #fff; /* White background for the container */
@@ -56,13 +79,14 @@ button {
     cursor : pointer;
 }
 
-.pop {
-    animation: pop 0.5s forwards;
-}
+
 
 @keyframes pop {
     50% { transform: scale(1.2); }
     100% { transform: scale(1); }
+}
+.pop {
+    animation: pop 0.5s ease;
 }
 
 @keyframes bounce {

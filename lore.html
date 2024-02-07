@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Love Lore</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css"> <!-- Using the same CSS file for styling -->
+</head>
+<body>
+    <div class="content">
+        <img src="giphy.gif" alt="Animated Image" class="question-gif">
+        <h1>How Well Do You Know Our Love Story?</h1>
+        <div id="questionContainer" class="question-container">
+            <!-- Questions will be inserted here by JavaScript -->
+        </div>
+        <button id="nextBtn" class="yes-button next-button" style="display: none;">Next</button>
+
+    </div>
+
+    <script>
+        const questions = [
+            { question: "How old was I when we met?", options: ["13", "16", "17", "18"], answer: "17" },
+            { question: "What is my favorite football club?", options: ["Real Madrid", "Barcelona", "Man City", "Bayern Munchen"], answer: "Bayern Munchen" },
+            { question: "What often do i think of you everyday ?", options: ["Titanic", "Inception", "The Notebook", "La La Land"], answer: "La La Land" },
+            
+        ];
+
+        let currentQuestionIndex = 0;
+
+        function showQuestion(questionIndex) {
+            const questionObj = questions[questionIndex];
+            const questionContainer = document.getElementById('questionContainer');
+            questionContainer.innerHTML = `<h2>${questionObj.question}</h2>`;
+
+            questionObj.options.forEach(option => {
+    const button = document.createElement('button');
+    button.textContent = option;
+    button.classList.add('option-button');
+    button.addEventListener('click', () => checkAnswer(option, questionObj.answer, button)); // Pass the button to the function
+    questionContainer.appendChild(button);
+});
+
+            document.getElementById('nextBtn').style.display = 'none'; // Hide the Next button until an answer is selected
+        }
+
+        function checkAnswer(selected, correct, button) {
+    if (selected === correct) {
+        if (currentQuestionIndex < questions.length - 1) {
+            document.getElementById('nextBtn').style.display = 'inline-block'; // Show the Next button if there are more questions
+        } else {
+            window.location.href = 'game.html'; // Redirect to the game page if it's the last question
+        }
+    } else {
+        button.classList.add('wrong-answer'); // Add class to change color and apply vibration
+        setTimeout(() => button.classList.remove('wrong-answer'), 1000); // Remove the class after 1 second
+    }
+}
+
+
+        document.getElementById('nextBtn').addEventListener('click', function() {
+            currentQuestionIndex++;
+            showQuestion(currentQuestionIndex); // Show the next question
+        });
+
+        showQuestion(currentQuestionIndex); // Initialize the first question
+    </script>
+    <!-- Add this to the <body> of every page -->
+<audio id="backgroundMusic" src="song.mp3" loop></audio>
+
+<script>
+    // JavaScript to play music continuously
+    const music = document.getElementById('backgroundMusic');
+
+    // Function to play music from a specified time
+    function playMusicFromTime(time) {
+        music.currentTime = time;
+        music.play();
+    }
+
+    // Start music on page load
+    window.addEventListener('load', () => {
+        // Check if there's a saved playback time in sessionStorage
+        const savedTime = sessionStorage.getItem('musicTime');
+        playMusicFromTime(savedTime ? parseFloat(savedTime) : 0);
+    });
+
+    // Save current music playback time before leaving the page
+    window.addEventListener('beforeunload', () => {
+        sessionStorage.setItem('musicTime', music.currentTime);
+    });
+</script>
+
+<!-- Add this inside the <body> tag to display the score -->
+    <div id="scoreDisplay" style="position: absolute;font-size: 30px; top: 10px; left: 10px;">Score: 0</div>
+
+    <script>
+        // Initialize the score to 0 every time the page loads
+        let score = 0;
+        localStorage.setItem('score', score); // Save the initialized score to localStorage
+        document.getElementById('scoreDisplay').textContent = `Score: ${score}`;
+    
+        function updateScore(isCorrect) {
+            if (isCorrect) {
+                score++;
+            } else {
+                score--; // Allow score to go below 0
+            }
+            localStorage.setItem('score', score); // Save the updated score
+            document.getElementById('scoreDisplay').textContent = `Score: ${score}`;
+        }
+    
+        function checkAnswer(selected, correct, button) {
+            const isCorrect = selected === correct;
+            updateScore(isCorrect);
+            if (isCorrect) {
+                if (currentQuestionIndex < questions.length - 1) {
+                    document.getElementById('nextBtn').style.display = 'inline-block'; // Show the Next button if there are more questions
+                } else {
+                    window.location.href = 'game.html'; // Redirect to the game page if it's the last question
+                }
+            } else {
+                button.classList.add('wrong-answer'); // Add class to change color and apply vibration
+                setTimeout(() => button.classList.remove('wrong-answer'), 1000); // Remove the class after 1 second
+            }
+        }
+    
+        // Update the event listeners on the answer buttons to include the button element itself
+        // This part of the code should be within your existing showQuestion function or similar logic where you generate answer buttons
+    </script>
+    
+    
+
+</body>
+</html>
